@@ -19,7 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-            "": "src/"
+            "Alu\\": "src/Alu"
         }
     },
     "autoload-dev": {
@@ -27,5 +27,8 @@
             "Alu\\": "src/Alu",
             "Tests\\": "tests/"
         }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
     }
 }
