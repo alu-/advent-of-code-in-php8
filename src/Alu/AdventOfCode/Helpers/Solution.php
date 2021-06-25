@@ -48,10 +48,13 @@ abstract class Solution
 
     /**
      * Return the input as an array, split by lines
-     * @return array
+     * @param bool $trim
+     * @return string[]
      */
-    protected function getInputLines(): array
+    protected function getInputLines(bool $trim = false): array
     {
-        return explode("\n", $this->getInput());
+        $input = $trim ? trim($this->getInput()) : $this->getInput();
+
+        return explode("\n", $input);
     }
 }
