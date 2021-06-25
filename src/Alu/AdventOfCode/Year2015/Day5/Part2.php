@@ -2,8 +2,7 @@
 
 namespace Alu\AdventOfCode\Year2015\Day5;
 
-use Alu\AdventOfCode\Helpers\Solution;
-use Alu\AdventOfCode\Helpers\SolutionInterface;
+use Alu\AdventOfCode\Helpers\{Solution, SolutionInterface};
 
 class Part2 extends Solution implements SolutionInterface
 {
