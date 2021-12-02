@@ -3,15 +3,11 @@
 namespace Alu\AdventOfCode\Helpers;
 
 use ReflectionClass;
-use ReflectionException;
 
 abstract class Solution
 {
     private string $input;
 
-    /**
-     * @throws ReflectionException
-     */
     public function __construct()
     {
         $this->setInput($this->readInputFromFile());
@@ -19,7 +15,7 @@ abstract class Solution
 
     /**
      * Reads the puzzle input from file
-     * @throws ReflectionException
+     * @return string
      */
     protected function readInputFromFile(): string
     {
