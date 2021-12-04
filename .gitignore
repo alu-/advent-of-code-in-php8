@@ -53,3 +53,6 @@
 
 # JetBrains
 /.idea
+
+# Dotenv configuration file
+.env
