@@ -8,7 +8,6 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Cookie\CookieJar;
 use GuzzleHttp\Exception\GuzzleException;
 use League\HTMLToMarkdown\HtmlConverter;
-use Parsedown;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -176,7 +175,7 @@ class BootstrapCommand extends Command
         $html = $response->getBody()->getContents();
 
         $dom = new DOMDocument();
-        $dom->loadHTML($html,LIBXML_NOERROR);
+        $dom->loadHTML($html, LIBXML_NOERROR);
 
         $xpath = new DOMXpath($dom);
         $puzzle = $xpath->query("/html/body/main/article[" . $part . "]");

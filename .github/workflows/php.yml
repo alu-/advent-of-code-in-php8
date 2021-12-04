@@ -31,3 +31,6 @@ jobs:
 
     - name: Run test suite
       run: composer run-script test
+
+    - name: Run PHP_CodeSniffer with PSR12 standard
+      run: composer run-script phpcs
