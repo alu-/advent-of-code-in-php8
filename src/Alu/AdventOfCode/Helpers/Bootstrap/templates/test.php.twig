@@ -1,0 +1,27 @@
+<?php
+
+namespace Tests\Alu\AdventOfCode\Year{{ year }}\Day{{ day }};
+
+use Alu\AdventOfCode\Year{{ year }}\Day{{ day }}\Part{{ part }};
+use PHPUnit\Framework\TestCase;
+
+class Part{{ part }}Test extends TestCase
+{
+    /**
+     * @dataProvider inputProvider
+     */
+    public function testRun($input, $output)
+    {
+        $solution = new Part{{ part }}();
+        $solution->setInput($input);
+
+        $this->assertSame($output, $solution->run());
+    }
+
+    public function inputProvider(): array
+    {
+        return [
+            ['', 0],
+        ];
+    }
+}

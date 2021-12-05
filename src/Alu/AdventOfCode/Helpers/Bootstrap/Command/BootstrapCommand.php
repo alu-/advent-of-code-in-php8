@@ -72,6 +72,7 @@ class BootstrapCommand extends Command
             $this->createDirectories($puzzle['year'], $puzzle['day']);
             $this->downloadFiles(...$puzzle);
             $this->createSourceFile(...$puzzle);
+            $this->createTestFile(...$puzzle);
 
             $output->write(
                 "Puzzle bootstrapped at " . self::getSolutionPath($puzzle['year'], $puzzle['day']),
@@ -147,10 +148,13 @@ class BootstrapCommand extends Command
      */
     private function createDirectories(int $year, int $day): void
     {
-        $path = self::getSolutionPath($year, $day);
         $filesystem = new Filesystem();
-        if (!$filesystem->exists($path)) {
-            $filesystem->mkdir($path);
+
+        $paths = [self::getSolutionPath($year, $day), self::getTestPath($year, $day)];
+        foreach($paths as $path) {
+            if (!$filesystem->exists($path)) {
+                $filesystem->mkdir($path);
+            }
         }
     }
 
@@ -230,6 +234,16 @@ class BootstrapCommand extends Command
     }
 
     /**
+     * @param int $year
+     * @param int $day
+     * @return string
+     */
+    private static function getTestPath(int $year, int $day): string
+    {
+        return sprintf('%s/tests/Alu/AdventOfCode/Year%s/Day%s', dirname(__DIR__, 6), $year, $day);
+    }
+
+    /**
      * Create a solution php-file in the solution path
      * @param int $year
      * @param int $day
@@ -250,6 +264,31 @@ class BootstrapCommand extends Command
         ]);
 
         $filename = sprintf("%s/Part%s.php", self::getSolutionPath($year, $day), $part);
+
+        return file_put_contents($filename, $solution);
+    }
+
+    /**
+     * Create a phpunit test file
+     * @param int $year
+     * @param int $day
+     * @param int $part
+     * @return bool|int
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    private function createTestFile(int $year, int $day, int $part): bool|int
+    {
+        $loader = new FilesystemLoader(dirname(__DIR__) . '/templates/');
+        $twig = new Environment($loader, ['cache' => false]);
+        $solution = $twig->render('test.php.twig', [
+            'year' => $year,
+            'day' => $day,
+            'part' => $part
+        ]);
+
+        $filename = sprintf("%s/Part%sTest.php", self::getTestPath($year, $day), $part);
 
         return file_put_contents($filename, $solution);
     }
