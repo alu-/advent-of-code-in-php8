@@ -42,8 +42,13 @@ class RunnerCommand extends Command
     private function runDay(OutputInterface $output, int $day, int $year): int
     {
         for ($part = 1; $part <= 2; $part++) {
-            $solution = new ($this->formatClassNamespace($year, $day, $part));
-            $output->writeln(sprintf('Year: %s Day: %s Part: %s Answer: %s', $year, $day, $part, $solution->run()));
+            $class = $this->formatClassNamespace($year, $day, $part);
+            if (class_exists($class)) {
+                $solution = new $class;
+                $output->writeln(sprintf('Year: %s Day: %s Part: %s Answer: %s', $year, $day, $part, $solution->run()));
+            } else {
+                $output->writeln(sprintf('Part %s not found, not running ..', $part));
+            }
         }
 
         return Command::SUCCESS;
