@@ -151,7 +151,7 @@ class BootstrapCommand extends Command
         $filesystem = new Filesystem();
 
         $paths = [self::getSolutionPath($year, $day), self::getTestPath($year, $day)];
-        foreach($paths as $path) {
+        foreach ($paths as $path) {
             if (!$filesystem->exists($path)) {
                 $filesystem->mkdir($path);
             }
