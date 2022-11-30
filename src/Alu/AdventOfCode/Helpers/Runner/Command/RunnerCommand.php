@@ -32,7 +32,6 @@ class RunnerCommand extends Command
             if (!empty($matches['year']) && !empty($matches['day'])) {
                 $this->runDay($output, $matches['day'], $matches['year']);
             }
-
         }
 
         return Command::SUCCESS;
@@ -46,8 +45,8 @@ class RunnerCommand extends Command
         $this
             ->setDescription('Run a advent or a puzzle.')
             ->setHelp('This command allows you to run an individual puzzle or a whole advent.')
-            ->addArgument('year',  description: 'Year to run.')
-            ->addArgument('day',  description: 'Day to run.')
+            ->addArgument('year', description: 'Year to run.')
+            ->addArgument('day', description: 'Day to run.')
             ->addOption('all', description: 'Run all solutions');
     }
 
@@ -111,7 +110,7 @@ class RunnerCommand extends Command
             ->name('*.php')
             ->sortByName(true);
 
-        foreach($finder as $path => $fileInfo) {
+        foreach ($finder as $path => $fileInfo) {
             yield $path;
         }
     }
