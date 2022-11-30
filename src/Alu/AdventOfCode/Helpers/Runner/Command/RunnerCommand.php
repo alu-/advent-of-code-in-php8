@@ -2,14 +2,41 @@
 
 namespace Alu\AdventOfCode\Helpers\Runner\Command;
 
+use Generator;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Finder\Finder;
 
 class RunnerCommand extends Command
 {
     protected static $defaultName = 'aoc:run';
+
+    /**
+     * @param $matches
+     * @param OutputInterface $output
+     * @return int
+     */
+    public function runAll(OutputInterface $output): int
+    {
+        foreach ($this->getSolutions() as $solution) {
+            /** @var string $solution */
+            preg_match(
+                '/^.*Alu\/AdventOfCode\/Year(?P<year>\d*)\/Day(?P<day>\d*)\/Part\d*.php$/',
+                $solution,
+                $matches
+            );
+
+            if (!empty($matches['year']) && !empty($matches['day'])) {
+                $this->runDay($output, $matches['day'], $matches['year']);
+            }
+
+        }
+
+        return Command::SUCCESS;
+    }
 
     /**
      * Configure our runner
@@ -19,20 +46,25 @@ class RunnerCommand extends Command
         $this
             ->setDescription('Run a advent or a puzzle.')
             ->setHelp('This command allows you to run an individual puzzle or a whole advent.')
-            ->addArgument('year', InputArgument::OPTIONAL, 'Year to run.')
-            ->addArgument('day', InputArgument::OPTIONAL, 'Day to run.');
+            ->addArgument('year',  description: 'Year to run.')
+            ->addArgument('day',  description: 'Day to run.')
+            ->addOption('all', description: 'Run all solutions');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $year = $input->getArgument('year');
-        $day = $input->getArgument('day');
+        if ($input->getOption('all')) {
+            return $this->runAll($output);
+        } else {
+            $year = $input->getArgument('year');
+            $day = $input->getArgument('day');
 
-        if ($year) {
-            if ($day) {
-                return $this->runDay($output, $day, $year);
-            } else {
-                return $this->runYear($output, $year);
+            if ($year) {
+                if ($day) {
+                    return $this->runDay($output, $day, $year);
+                } else {
+                    return $this->runYear($output, $year);
+                }
             }
         }
 
@@ -45,9 +77,9 @@ class RunnerCommand extends Command
             $class = $this->formatClassNamespace($year, $day, $part);
             if (class_exists($class)) {
                 $solution = new $class;
-                $output->writeln(sprintf('Year: %s Day: %s Part: %s Answer: %s', $year, $day, $part, $solution->run()));
+                $output->writeln(sprintf("Year: %d Day: %d Part: %d Answer: %d", $year, $day, $part, $solution->run()));
             } else {
-                $output->writeln(sprintf('Part %s not found, not running ..', $part));
+                $output->writeln(sprintf("Part %d not found for year %d day %d, not running ..", $part, $year, $day));
             }
         }
 
@@ -66,5 +98,21 @@ class RunnerCommand extends Command
     private function formatClassNamespace(int $year, int $day, int $part): string
     {
         return '\\Alu\\AdventOfCode\\Year' . $year . '\\Day' . $day . '\\Part' . $part;
+    }
+
+    /**
+     * @return Generator
+     */
+    private function getSolutions(): Generator
+    {
+        $finder = (new Finder())
+            ->files()
+            ->in(realpath(__DIR__ . '/../../..') . '/Year*/Day*/')
+            ->name('*.php')
+            ->sortByName(true);
+
+        foreach($finder as $path => $fileInfo) {
+            yield $path;
+        }
     }
 }
