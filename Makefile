@@ -12,7 +12,7 @@ all: vendor
 	docker-compose run --rm php application.php aoc:run --all
 
 bootstrap: vendor
-	docker-compose run --rm php application.php aoc:bootstrap
+	docker-compose run --rm php application.php aoc:bootstrap --next
 
 vendor:
 	docker run --rm -it \
