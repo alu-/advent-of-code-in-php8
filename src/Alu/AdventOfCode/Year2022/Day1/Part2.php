@@ -9,7 +9,7 @@ class Part2 extends Solution implements SolutionInterface
     public function run(): int
     {
         $dwarfs = [];
-        foreach (explode("\n\n",$this->getInput()) as $dwarf) {
+        foreach (explode("\n\n", $this->getInput()) as $dwarf) {
             $dwarfs[] = array_sum(array_map('intval', explode("\n", $dwarf)));
         }
         sort($dwarfs);
