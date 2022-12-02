@@ -5,7 +5,8 @@ namespace Tests\Alu\AdventOfCode\Year2022;
 use PHPUnit\Framework\TestCase;
 
 /**
- * These tests verify that the answers from the solutions, given a valid input.txt, is what the website says should be correct.
+ * These tests verify that the answers from the solutions, given a valid input.txt, is what the website says should be
+ * correct.
  */
 class Year2022 extends TestCase
 {
