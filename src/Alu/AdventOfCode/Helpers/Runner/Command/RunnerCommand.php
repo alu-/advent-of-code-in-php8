@@ -24,7 +24,7 @@ class RunnerCommand extends Command
         foreach ($this->getSolutions() as $solution) {
             /** @var string $solution */
             preg_match(
-                '/^.*Alu\/AdventOfCode\/Year(?P<year>\d*)\/Day(?P<day>\d*)\/Part\d*.php$/',
+                '/^.*Alu\/AdventOfCode\/Year(?P<year>\d*)\/Day(?P<day>\d*)\/input\.txt$/',
                 $solution,
                 $matches
             );
@@ -107,7 +107,7 @@ class RunnerCommand extends Command
         $finder = (new Finder())
             ->files()
             ->in(realpath(__DIR__ . '/../../..') . '/Year*/Day*/')
-            ->name('*.php')
+            ->name('input.txt')
             ->sortByName(true);
 
         foreach ($finder as $path => $fileInfo) {
