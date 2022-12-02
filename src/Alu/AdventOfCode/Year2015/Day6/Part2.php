@@ -2,9 +2,9 @@
 
 namespace Alu\AdventOfCode\Year2015\Day6;
 
-use Alu\AdventOfCode\Helpers\{Solution, SolutionInterface};
+use Alu\AdventOfCode\Helpers\Solution;
 
-class Part2 extends Solution implements SolutionInterface
+class Part2 extends Solution
 {
     public function run(): int
     {
@@ -15,9 +15,9 @@ class Part2 extends Solution implements SolutionInterface
             for ($x = $fromX; $x <= $toX; $x++) {
                 for ($y = $fromY; $y <= $toY; $y++) {
                     $lightGrid[$x][$y] += match ($instruction) {
-                        'turn on' => 1,
+                        'turn on'  => 1,
                         'turn off' => $lightGrid[$x][$y] > 0 ? -1 : 0,
-                        'toggle' => 2
+                        'toggle'   => 2
                     };
                 }
             }

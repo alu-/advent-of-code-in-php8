@@ -2,11 +2,11 @@
 
 namespace Alu\AdventOfCode\Year2022\Day2;
 
-use Alu\AdventOfCode\Helpers\{Solution, SolutionInterface};
+use Alu\AdventOfCode\Helpers\Solution;
 use Alu\AdventOfCode\Year2022\Day2\RoShamBo\Move;
 use Alu\AdventOfCode\Year2022\Day2\RoShamBo\Outcome;
 
-class Part2 extends Solution implements SolutionInterface
+class Part2 extends Solution
 {
     public function run(): int
     {
