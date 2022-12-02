@@ -30,8 +30,8 @@ enum Move
     public function beats(Move $move): bool
     {
         return match ($this) {
-            self::Rock => $move === self::Scissors,
-            self::Paper => $move === self::Rock,
+            self::Rock     => $move === self::Scissors,
+            self::Paper    => $move === self::Rock,
             self::Scissors => $move === self::Paper
         };
     }
@@ -53,8 +53,8 @@ enum Move
     public function score(): int
     {
         return match ($this) {
-            self::Rock => 1,
-            self::Paper => 2,
+            self::Rock     => 1,
+            self::Paper    => 2,
             self::Scissors => 3
         };
     }
