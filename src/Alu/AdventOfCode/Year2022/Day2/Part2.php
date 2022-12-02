@@ -11,15 +11,14 @@ class Part2 extends Solution implements SolutionInterface
     public function run(): int
     {
         $score = 0;
-        foreach($this->getInputLines(true) as $match) {
+        foreach ($this->getInputLines(true) as $match) {
             $opponent = Move::fromLetter($match[0]);
             $expectedOutcome = Outcome::from($match[2]);
             $moves = array_filter(Move::cases(), fn($x) => $x !== $opponent);
-            $you = match($expectedOutcome)
-            {
+            $you = match ($expectedOutcome) {
                 Outcome::Draw => Move::fromLetter($match[0]),
                 Outcome::Lose => current(array_filter($moves, fn($x) => $opponent->beats($x))),
-                Outcome::Win  => current(array_filter($moves, fn($x) => !$opponent->beats($x))),
+                Outcome::Win => current(array_filter($moves, fn($x) => !$opponent->beats($x))),
             };
 
             $score += $you->score();

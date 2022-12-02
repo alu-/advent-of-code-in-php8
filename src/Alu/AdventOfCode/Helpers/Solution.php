@@ -44,9 +44,9 @@ abstract class Solution
 
     /**
      * Return the input as an array, split by lines
-     * @todo Convert into a generator to save memory
      * @param bool $trim
      * @return string[]
+     * @todo Convert into a generator to save memory
      */
     protected function getInputLines(bool $trim = false): array
     {

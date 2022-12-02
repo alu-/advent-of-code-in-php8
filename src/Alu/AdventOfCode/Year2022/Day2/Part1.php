@@ -10,7 +10,7 @@ class Part1 extends Solution implements SolutionInterface
     public function run(): int
     {
         $score = 0;
-        foreach($this->getInputLines(true) as $match) {
+        foreach ($this->getInputLines(true) as $match) {
             list($opponent, $you) = array_map(
                 [Move::class, 'fromLetter'],
                 explode(' ', $match)

@@ -15,13 +15,13 @@ class Part{{ part }}Test extends TestCase
         $solution = new Part{{ part }}();
         $solution->setInput($input);
 
-        $this->assertSame($output, $solution->run());
-    }
+$this->assertSame($output, $solution->run());
+}
 
-    public function inputProvider(): array
-    {
-        return [
-            ['', 0],
-        ];
-    }
+public function inputProvider(): array
+{
+return [
+['', 0],
+];
+}
 }

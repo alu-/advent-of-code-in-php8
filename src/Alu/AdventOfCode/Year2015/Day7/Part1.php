@@ -35,12 +35,12 @@ class Part1 extends Solution implements SolutionInterface
                     $right = $this->readMemoryOrUseValue($instruction['right']);
 
                     $this->writeMemoryAtAddress($instruction['output'], match ($instruction['operation']) {
-                        ''       => $right,
-                        'AND'    => $left & $right,
-                        'OR'     => $left | $right,
+                        '' => $right,
+                        'AND' => $left & $right,
+                        'OR' => $left | $right,
                         'LSHIFT' => $left << $right,
                         'RSHIFT' => $left >> $right,
-                        'NOT'    => ~ $right
+                        'NOT' => ~$right
                     });
 
                     unset($instructions[$key]);

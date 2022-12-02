@@ -15,9 +15,9 @@ class Part2 extends Solution implements SolutionInterface
             for ($x = $fromX; $x <= $toX; $x++) {
                 for ($y = $fromY; $y <= $toY; $y++) {
                     $lightGrid[$x][$y] += match ($instruction) {
-                        'turn on'  => 1,
+                        'turn on' => 1,
                         'turn off' => $lightGrid[$x][$y] > 0 ? -1 : 0,
-                        'toggle'   => 2
+                        'toggle' => 2
                     };
                 }
             }
