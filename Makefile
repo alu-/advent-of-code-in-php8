@@ -3,13 +3,16 @@ CURRENT_UID := $(shell id -u)
 CURRENT_GID := $(shell id -g)
 YEAR ?= $(shell date +"%Y")
 DAY ?= $(shell date +"%d")
-.PHONY: run all bootstrap clean
+.PHONY: run all lint bootstrap clean
 
 run: vendor
 	docker-compose run --rm php application.php aoc:run $(YEAR) $(DAY)
 
 all: vendor
 	docker-compose run --rm php application.php aoc:run --all
+
+lint: vendor
+	docker-compose run --rm php ./vendor/bin/phpcs .
 
 bootstrap: vendor
 	docker-compose run --rm php application.php aoc:bootstrap
