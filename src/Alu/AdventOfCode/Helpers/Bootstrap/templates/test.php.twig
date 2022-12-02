@@ -3,7 +3,7 @@
 namespace Tests\Alu\AdventOfCode\Year{{ year }}\Day{{ day }};
 
 use Alu\AdventOfCode\Year{{ year }}\Day{{ day }}\Part{{ part }};
-use PHPUnit\Framework\TestCase;
+use Tests\Alu\AdventOfCode\TestCase;
 
 class Part{{ part }}Test extends TestCase
 {
@@ -12,16 +12,17 @@ class Part{{ part }}Test extends TestCase
      */
     public function testRun($input, $output)
     {
-        $solution = new Part{{ part }}();
+        /** @var Part{{ part }} $solution */
+        $solution = $this->getMockForPart(Part{{ part }}::class);
         $solution->setInput($input);
 
-$this->assertSame($output, $solution->run());
-}
+        $this->assertSame($output, $solution->run());
+    }
 
-public function inputProvider(): array
-{
-return [
-['', 0],
-];
-}
+    public function inputProvider(): array
+    {
+        return [
+            ['', 0],
+        ];
+    }
 }
