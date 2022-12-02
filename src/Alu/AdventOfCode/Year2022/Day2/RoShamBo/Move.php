@@ -1,8 +1,8 @@
 <?php
 
-namespace Alu\AdventOfCode\Year2022\Day2;
+namespace Alu\AdventOfCode\Year2022\Day2\RoShamBo;
 
-enum RoShamBoMove
+enum Move
 {
     case Rock;
     case Paper;
@@ -11,23 +11,23 @@ enum RoShamBoMove
     /**
      * Returns the enum representing a letter
      * @param string $letter
-     * @return RoShamBoMove
+     * @return Move
      */
-    public static function fromLetter(string $letter): RoShamBoMove
+    public static function fromLetter(string $letter): Move
     {
         return match ($letter) {
-            'A', 'X' => RoShamBoMove::Rock,
-            'B', 'Y' => RoShamBoMove::Paper,
-            'C', 'Z' => RoShamBoMove::Scissors,
+            'A', 'X' => Move::Rock,
+            'B', 'Y' => Move::Paper,
+            'C', 'Z' => Move::Scissors,
         };
     }
 
     /**
      * Whether this move beats another one
-     * @param RoShamBoMove $move
+     * @param Move $move
      * @return bool
      */
-    public function beats(RoShamBoMove $move): bool
+    public function beats(Move $move): bool
     {
         return match ($this) {
             self::Rock     => $move === self::Scissors,
@@ -38,10 +38,10 @@ enum RoShamBoMove
 
     /**
      * Whether this move draws another one
-     * @param RoShamBoMove $move
+     * @param Move $move
      * @return bool
      */
-    public function draws(RoShamBoMove $move): bool
+    public function draws(Move $move): bool
     {
         return $this === $move;
     }

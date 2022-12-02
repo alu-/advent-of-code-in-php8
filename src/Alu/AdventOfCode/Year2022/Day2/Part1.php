@@ -3,6 +3,7 @@
 namespace Alu\AdventOfCode\Year2022\Day2;
 
 use Alu\AdventOfCode\Helpers\{Solution, SolutionInterface};
+use Alu\AdventOfCode\Year2022\Day2\RoShamBo\Move;
 
 class Part1 extends Solution implements SolutionInterface
 {
@@ -11,7 +12,7 @@ class Part1 extends Solution implements SolutionInterface
         $score = 0;
         foreach($this->getInputLines(true) as $match) {
             list($opponent, $you) = array_map(
-                [RoShamBoMove::class, 'fromLetter'],
+                [Move::class, 'fromLetter'],
                 explode(' ', $match)
             );
 
