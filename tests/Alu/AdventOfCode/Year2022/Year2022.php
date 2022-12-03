@@ -25,5 +25,6 @@ class Year2022 extends TestCase
     public function testDay3()
     {
         $this->assertSame(7817, (new \Alu\AdventOfCode\Year2022\Day3\Part1)->run());
+        $this->assertSame(2444, (new \Alu\AdventOfCode\Year2022\Day3\Part2)->run());
     }
 }
