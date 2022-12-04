@@ -34,4 +34,15 @@ class Section
     {
         return $otherSection->getStart() >= $this->getStart() && $otherSection->getStop() <= $this->getStop();
     }
+
+    #[Pure]
+    public function getSections(): array
+    {
+        return range($this->getStart(), $this->getStop());
+    }
+
+    public function hasOverlappingSections(Section $otherSection): bool
+    {
+        return count(array_intersect($this->getSections(), $otherSection->getSections())) > 0;
+    }
 }
