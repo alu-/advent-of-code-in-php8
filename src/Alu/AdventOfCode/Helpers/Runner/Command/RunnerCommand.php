@@ -90,7 +90,7 @@ class RunnerCommand extends Command
             $class = $this->formatClassNamespace($year, $day, $part);
             if (class_exists($class)) {
                 $solution = new $class;
-                $output->writeln(sprintf("Year: %d Day: %d Part: %d Answer: %d", $year, $day, $part, $solution->run()));
+                $output->writeln(sprintf("Year: %d Day: %d Part: %d Answer: %s", $year, $day, $part, $solution->run()));
             } else {
                 $output->writeln(sprintf("Part %d not found for year %d day %d, not running ..", $part, $year, $day));
             }
