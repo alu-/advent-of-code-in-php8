@@ -33,4 +33,9 @@ class Year2022 extends TestCase
         $this->assertSame(562, (new \Alu\AdventOfCode\Year2022\Day4\Part1)->run());
         $this->assertSame(924, (new \Alu\AdventOfCode\Year2022\Day4\Part2)->run());
     }
+
+    public function testDay5()
+    {
+        $this->assertSame("SHMSDGZVC", (new \Alu\AdventOfCode\Year2022\Day5\Part1)->run());
+    }
 }
