@@ -29,7 +29,7 @@ class Part1 extends Solution
      * @param int $length
      * @return Generator<string>
      */
-    private function arrayChunkInclusive(string $input, int $length): Generator
+    protected function arrayChunkInclusive(string $input, int $length): Generator
     {
         $inputLength = mb_strlen($input);
         for ($i = 0; $i < $inputLength; $i++) {
