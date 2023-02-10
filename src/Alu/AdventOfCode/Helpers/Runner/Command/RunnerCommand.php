@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Alu\AdventOfCode\Helpers\Runner\Command;
 
@@ -30,7 +31,7 @@ class RunnerCommand extends Command
             );
 
             if (!empty($matches['year']) && !empty($matches['day'])) {
-                $this->runDay($output, $matches['day'], $matches['year']);
+                $this->runDay($output, (int) $matches['day'], (int) $matches['year']);
             }
         }
 
@@ -60,9 +61,9 @@ class RunnerCommand extends Command
 
             if ($year) {
                 if ($day) {
-                    return $this->runDay($output, $day, $year);
+                    return $this->runDay($output, (int) $day, (int) $year);
                 } else {
-                    return $this->runYear($output, $year);
+                    return $this->runYear($output, (int) $year);
                 }
             }
         }
