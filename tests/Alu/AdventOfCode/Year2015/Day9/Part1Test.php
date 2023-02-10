@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Tests\Alu\AdventOfCode\Year2015\Day9;
 
@@ -20,6 +21,7 @@ class Part1Test extends TestCase
 
     public function inputProvider(): array
     {
+        // London -> Dublin -> Belfast = 605
         return [
             [<<<'EOD'
 London to Dublin = 464

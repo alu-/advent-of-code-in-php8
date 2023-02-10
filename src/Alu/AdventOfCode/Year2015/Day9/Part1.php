@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Alu\AdventOfCode\Year2015\Day9;
 
@@ -8,40 +9,26 @@ class Part1 extends Solution implements SolutionInterface
 {
     public function run(): int
     {
-        $graph = [];
+        $graph = new Graph();
         foreach ($this->getInputLines(true) as $line) {
             list($from, $to, $distance) = explode('/', str_replace([' to ', ' = '], '/', $line));
 
-            echo $from . ' - ' . $to . ' : ' . $distance . PHP_EOL;
+            if (!$graph->hasVertex($from)) {
+                $graph->addVertex(new Vertex($from));
+            }
+            if (!$graph->hasVertex($to)) {
+                $graph->addVertex(new Vertex($to));
+            }
 
-            $graph[$from][$to] = (int) $distance;
-            $graph[$to][$from] = (int) $distance;
+            $graph->addEdge($from, $to, (int) $distance, false);
         }
 
-        # 8st unika i input, 3 i test
-        # 207 live, 605 test
-        $floydWarshall = new FloydWarshall($graph);
+        $distances = [];
+        foreach ($graph->getVertices() as $vertex) {
+            $routes = $graph->depthFirstSearch($vertex);
+            $distances = [...array_map(fn($r) => $r->getDistance(), $routes), ...$distances];
+        }
 
-        var_dump($floydWarshall->getShortestPath());
-
-        return $floydWarshall->getLengthOfShortestPath();
+        return min($distances);
     }
-
-    /*
-    Prepping data:
-    let dist be a |V| × |V| array of minimum distances initialized to ∞ (infinity)
-    for each edge (u, v) do
-        dist[u][v] ← w(u, v)  // The weight of the edge (u, v)
-
-    for each vertex v do
-        dist[v][v] ← 0
-
-    Solving:
-    for k from 1 to |V|
-        for i from 1 to |V|
-            for j from 1 to |V|
-                if dist[i][j] > dist[i][k] + dist[k][j]
-                    dist[i][j] ← dist[i][k] + dist[k][j]
-                end if
-     */
 }
