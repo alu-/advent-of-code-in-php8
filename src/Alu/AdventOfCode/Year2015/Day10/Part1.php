@@ -19,11 +19,6 @@ class Part1 extends Solution implements SolutionInterface
 
     public function lookAndSay(string $start): string
     {
-        $answer = '';
-        foreach (preg_split('/(.)(?!\1|$)\K/', $start) as $match) {
-            $answer .= strlen($match) . $match[0];
-        }
-
-        return $answer;
+        return preg_replace_callback('/(.)\1*/', fn ($match)  => strlen($match[0]) . $match[0][0], $start);
     }
 }
