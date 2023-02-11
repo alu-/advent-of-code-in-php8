@@ -3,7 +3,6 @@
 namespace Alu\AdventOfCode\Year2022\Day7;
 
 use Alu\AdventOfCode\Helpers\Solution;
-use Exception;
 use Generator;
 
 class Part1 extends Solution
@@ -27,7 +26,7 @@ class Part1 extends Solution
         return array_reduce($smallerDirectories, fn($carry, $item) => $carry + $item->getSize(), 0);
     }
 
-    private function parseCommands(): Generator
+    protected function parseCommands(): Generator
     {
         $lines = $this->getInputLines(true);
         $commands = preg_grep("/^\\$ .*$/", $lines);

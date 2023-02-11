@@ -105,4 +105,12 @@ class Filesystem implements IteratorAggregate
     {
         $this->root->calculateSizes();
     }
+
+    /**
+     * @return Directory
+     */
+    public function getRoot(): Directory
+    {
+        return $this->root;
+    }
 }
