@@ -131,7 +131,7 @@ class BootstrapCommand extends Command
             foreach ($days as $day) {
                 foreach (range(1, 2) as $part) {
                     $key = sprintf('Year%s/Day%s/Part%s', $year, $day, $part);
-                    $matches = array_filter($files, fn($element) => str_contains($element, $key));
+                    $matches = array_filter($files, fn($element) => str_contains($element->getPathName(), $key));
 
                     if (count($matches) == 0) {
                         return [
