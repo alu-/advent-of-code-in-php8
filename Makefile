@@ -3,7 +3,7 @@ CURRENT_UID := $(shell id -u)
 CURRENT_GID := $(shell id -g)
 YEAR ?= $(shell date +"%Y")
 DAY ?= $(shell date +"%d")
-.PHONY: run all bootstrap clean
+.PHONY: run all bootstrap clean tests
 
 run: vendor
 	docker-compose run -T --rm php application.php aoc:run $(YEAR) $(DAY)
