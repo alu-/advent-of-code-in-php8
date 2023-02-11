@@ -2,9 +2,9 @@
 
 namespace Alu\AdventOfCode\Year2015\Day3;
 
-use Alu\AdventOfCode\Helpers\{Solution, SolutionInterface};
+use Alu\AdventOfCode\Helpers\Solution;
 
-class Part2 extends Solution implements SolutionInterface
+class Part2 extends Solution
 {
     public function run(): int
     {

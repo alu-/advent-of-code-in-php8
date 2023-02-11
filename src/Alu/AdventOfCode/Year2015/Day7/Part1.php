@@ -2,7 +2,7 @@
 
 namespace Alu\AdventOfCode\Year2015\Day7;
 
-use Alu\AdventOfCode\Helpers\{Solution, SolutionInterface};
+use Alu\AdventOfCode\Helpers\Solution;
 
 /**
  * Class Part1
@@ -11,7 +11,7 @@ use Alu\AdventOfCode\Helpers\{Solution, SolutionInterface};
  * I wanted to use Parle (https://www.php.net/manual/en/intro.parle.php) for this but since it is a
  * PECL extension and not bundled with PHP I opted out and went with just regular expressions instead.
  */
-class Part1 extends Solution implements SolutionInterface
+class Part1 extends Solution
 {
     protected array $memory = [];
 
