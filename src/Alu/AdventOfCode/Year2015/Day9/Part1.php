@@ -9,6 +9,14 @@ class Part1 extends Solution implements SolutionInterface
 {
     public function run(): int
     {
+        return min($this->getDistances());
+    }
+
+    /**
+     * @return array
+     */
+    protected function getDistances(): array
+    {
         $graph = new Graph();
         foreach ($this->getInputLines(true) as $line) {
             list($from, $to, $distance) = explode('/', str_replace([' to ', ' = '], '/', $line));
@@ -20,7 +28,7 @@ class Part1 extends Solution implements SolutionInterface
                 $graph->addVertex(new Vertex($to));
             }
 
-            $graph->addEdge($from, $to, (int) $distance, false);
+            $graph->addEdge($from, $to, (int)$distance, false);
         }
 
         $distances = [];
@@ -29,6 +37,6 @@ class Part1 extends Solution implements SolutionInterface
             $distances = [...array_map(fn($r) => $r->getDistance(), $routes), ...$distances];
         }
 
-        return min($distances);
+        return $distances;
     }
 }
