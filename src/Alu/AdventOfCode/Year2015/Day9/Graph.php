@@ -11,7 +11,7 @@ use JetBrains\PhpStorm\Pure;
  */
 class Graph
 {
-    public function __construct(private array $vertices = [], private array $edges = [])
+    public function __construct(protected array $vertices = [], protected array $edges = [])
     {
     }
 
@@ -102,6 +102,44 @@ class Graph
             );
 
             if (empty($edgesNotVisited)) {
+                $routes[] = $discovered;
+            } else {
+                foreach ($edgesNotVisited as $directed_edge => $distance) {
+                    if (!$discovered->hasStop($directed_edge)) {
+                        $dfs($this->vertices[$directed_edge], $distance, clone $discovered);
+                    }
+                }
+            }
+        };
+        $dfs($start);
+
+        return $routes;
+    }
+
+    /**
+     * Perform a depth-first search of the graph but connect the last node to the first one if an edge exists
+     * https://en.wikipedia.org/wiki/Depth-first_search
+     * @param Vertex|null $start
+     * @return array<Route>
+     */
+    public function depthFirstSearchWithCycle(?Vertex $start = null): array
+    {
+        if (is_null($start)) {
+            $start = current($this->vertices);
+        }
+
+        $routes = [];
+        $dfs = function (Vertex $vertex, int|float $distance = 0, Route $discovered = new Route()) use (&$dfs, &$routes, $start) {
+            $discovered->addStop($vertex, $distance);
+            $edgesNotVisited = array_filter(
+                $this->adjacentEdges($vertex),
+                fn ($distance, $vertexName) => !$discovered->hasStop($vertexName),
+                ARRAY_FILTER_USE_BOTH
+            );
+
+            if (empty($edgesNotVisited)) {
+                $edges = $this->adjacentEdges($vertex);
+                $discovered->addStop($start, $edges[$start->getName()]);
                 $routes[] = $discovered;
             } else {
                 foreach ($edgesNotVisited as $directed_edge => $distance) {
