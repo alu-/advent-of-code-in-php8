@@ -11,15 +11,15 @@ class Part1 extends Solution implements SolutionInterface
     public function run(): int
     {
         $answer = 0;
-        $iterator = new RecursiveIteratorIterator(
-            new RecursiveArrayIterator(
-                json_decode($this->getInput())
+        $iterator = new IntegerFilterIterator(
+            new RecursiveIteratorIterator(
+                new RecursiveArrayIterator(
+                    json_decode($this->getInput())
+                )
             )
         );
-        foreach ($iterator as $leaf) {
-            if (is_int($leaf)) {
-                $answer += $leaf;
-            }
+        foreach ($iterator as $integer) {
+            $answer += $integer;
         }
 
         return $answer;
