@@ -52,6 +52,7 @@ trait Raceable
         $this->restTimer--;
         if ($this->restTimer === 0) {
             $this->stamina = $this->getTravelDuration();
+            $this->setResting(false);
         }
     }
 
