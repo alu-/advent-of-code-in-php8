@@ -55,28 +55,25 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os:
-          - ubuntu-latest
-
         php-version:
           - "8.3"
 
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: Install PHP with extensions
-    uses: shivammathur/setup-php@v2
-    with:
-      php-version: ${{ matrix.php-version }}
-      extensions: ${{ env.PHP_EXTENSIONS }}
-      ini-values: ${{ env.PHP_INI_VALUES }}
-      tools: none
+      - name: Install PHP with extensions
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          extensions: ${{ env.PHP_EXTENSIONS }}
+          ini-values: ${{ env.PHP_INI_VALUES }}
+          tools: none
 
-    - name: Validate composer.json and composer.lock
-      run: composer validate --strict
+      - name: Validate composer.json and composer.lock
+        run: composer validate --strict
 
-    - name: Install dependencies
-      run: composer install --prefer-dist --no-progress
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
 
-    - name: Run phpcs
-      run: composer run-script phpcs
+      - name: Run phpcs
+        run: composer run-script phpcs
