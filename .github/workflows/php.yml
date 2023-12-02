@@ -48,8 +48,29 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    env:
+      PHP_EXTENSIONS: tokenizer, xml, xmlwriter
+      PHP_INI_VALUES: memory_limit=-1, assert.exception=1, zend.assertions=1, error_reporting=-1, log_errors_max_len=0, display_errors=On
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+
+        php-version:
+          - "8.3"
+
     steps:
     - uses: actions/checkout@v2
+
+    - name: Install PHP with extensions
+    uses: shivammathur/setup-php@v2
+    with:
+      php-version: ${{ matrix.php-version }}
+      extensions: ${{ env.PHP_EXTENSIONS }}
+      ini-values: ${{ env.PHP_INI_VALUES }}
+      tools: none
 
     - name: Validate composer.json and composer.lock
       run: composer validate --strict
