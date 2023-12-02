@@ -20,8 +20,7 @@ class Reindeer
         public int $distance,
         public int $duration,
         public int $restDuration
-    )
-    {
+    ) {
         $this->resting = false;
         $this->restTime = 0;
         $this->stamina = $this->duration;
