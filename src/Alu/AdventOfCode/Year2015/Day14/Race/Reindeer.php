@@ -17,9 +17,9 @@ class Reindeer
      */
     public function __construct(
         public string $name,
-        public int    $distance,
-        public int    $duration,
-        public int    $restDuration
+        public int $distance,
+        public int $duration,
+        public int $restDuration
     )
     {
         $this->resting = false;

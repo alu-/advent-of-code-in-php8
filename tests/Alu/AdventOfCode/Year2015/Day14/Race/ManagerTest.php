@@ -10,7 +10,7 @@ class ManagerTest extends TestCase
 {
     public function testAdvance()
     {
-        $reindeer = new Reindeer('Testdeer', 1, 2,10);
+        $reindeer = new Reindeer('Testdeer', 1, 2, 10);
         $race = new Manager([$reindeer]);
 
         $race->advance();
@@ -38,8 +38,8 @@ class ManagerTest extends TestCase
 
     public function testWinner()
     {
-        $loser = new Reindeer('Loser', 1, 2,10);
-        $winner = new Reindeer('Winner', 1000, 2,10);
+        $loser = new Reindeer('Loser', 1, 2, 10);
+        $winner = new Reindeer('Winner', 1000, 2, 10);
         $race = new Manager([$loser, $winner]);
 
         $race->advance();

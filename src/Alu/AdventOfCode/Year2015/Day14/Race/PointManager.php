@@ -12,7 +12,8 @@ class PointManager implements RaceInterface
     /**
      * @param array<int, Reindeer> $participants
      */
-    public function __construct(private readonly array $participants) {
+    public function __construct(private readonly array $participants)
+    {
         $names = array_map(fn($participant): string => $participant->name, $this->participants);
         $this->points = array_fill_keys($names, 0);
     }
@@ -35,7 +36,7 @@ class PointManager implements RaceInterface
      */
     public function leaders(): array
     {
-        $mostDistanceTravelled = array_reduce($this->participants, function(int $carry, Reindeer $reindeer) {
+        $mostDistanceTravelled = array_reduce($this->participants, function (int $carry, Reindeer $reindeer) {
             return $reindeer->getDistanceTravelled() > $carry ? $reindeer->getDistanceTravelled() : $carry;
         }, 0);
 

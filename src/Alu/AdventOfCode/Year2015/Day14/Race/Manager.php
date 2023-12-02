@@ -11,7 +11,9 @@ class Manager implements RaceInterface
     /**
      * @param array<int, Reindeer> $participants
      */
-    public function __construct(private readonly array $participants) {}
+    public function __construct(private readonly array $participants)
+    {
+    }
 
     public function advance(): void
     {
@@ -24,7 +26,7 @@ class Manager implements RaceInterface
 
     public function winner(): Reindeer
     {
-        return array_reduce($this->participants, function(Reindeer $carry, Reindeer $reindeer) {
+        return array_reduce($this->participants, function (Reindeer $carry, Reindeer $reindeer) {
             return $reindeer->getDistanceTravelled() > $carry->getDistanceTravelled() ? $reindeer : $carry;
         }, $this->participants[0]);
     }
