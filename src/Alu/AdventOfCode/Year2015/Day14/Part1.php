@@ -38,7 +38,7 @@ class Part1 extends Solution implements SolutionInterface
      * @param string $input
      * @return array
      */
-    private function parseReindeer(string $input): array
+    protected function parseReindeer(string $input): array
     {
         preg_match_all(
             '/(?P<name>\w+) can fly (?P<distance>\d+) km\/s for (?P<duration>\d+) seconds, but then must rest for (?P<restDuration>\d+) seconds\\./',
