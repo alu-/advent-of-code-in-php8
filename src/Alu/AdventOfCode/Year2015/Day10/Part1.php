@@ -10,7 +10,7 @@ class Part1 extends Solution implements SolutionInterface
     public function run(): int
     {
         $start = $this->getInput(true);
-        for($i = 0; $i < 40; $i++) {
+        for ($i = 0; $i < 40; $i++) {
             $start = $this->lookAndSay($start);
         }
 

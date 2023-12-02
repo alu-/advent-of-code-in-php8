@@ -10,14 +10,14 @@ class Part2 extends Part1
     {
         $graph = new Graph();
         $graph->addVertex(new Vertex("Me"));
-        foreach($this->getInputLines(true) as $line) {
+        foreach ($this->getInputLines(true) as $line) {
             preg_match('/(\w+) would (gain|lose) (\d+) happiness units by sitting next to (\w+)/', $line, $matches);
             list(, $left, $modifier, $weight, $right) = $matches;
 
             $this->addVertex($graph, $left)
                 ->addVertex($graph, $right);
 
-            $weight = match($modifier) {
+            $weight = match ($modifier) {
                 'gain' => $weight,
                 'lose' => -$weight,
             };

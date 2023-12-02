@@ -17,7 +17,8 @@ class Part2 extends Solution implements SolutionInterface
                     new RecursiveArrayIterator(
                         [json_decode($this->getInput())]
                     )
-                ), RecursiveIteratorIterator::SELF_FIRST
+                ),
+                RecursiveIteratorIterator::SELF_FIRST
             )
         );
         foreach ($iterator as $integer) {
