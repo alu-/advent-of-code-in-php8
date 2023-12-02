@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Tests\Alu\AdventOfCode\Year2015\Day6;
 

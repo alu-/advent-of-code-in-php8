@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Alu\AdventOfCode\Helpers;
 
@@ -28,9 +29,9 @@ abstract class Solution
      * Getter for puzzle input
      * @return string
      */
-    public function getInput(): string
+    public function getInput(bool $trim = false): string
     {
-        return $this->input;
+        return $trim ? trim($this->input) : $this->input;
     }
 
     /**
