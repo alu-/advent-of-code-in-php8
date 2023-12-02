@@ -1,6 +1,6 @@
 <?php
 
-namespace Alu\AdventOfCode\Year2015\Day14;
+namespace Alu\AdventOfCode\Year2015\Day14\Race;
 
 class Reindeer
 {

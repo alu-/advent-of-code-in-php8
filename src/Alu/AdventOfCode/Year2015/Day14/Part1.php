@@ -3,6 +3,8 @@
 namespace Alu\AdventOfCode\Year2015\Day14;
 
 use Alu\AdventOfCode\Helpers\{Solution, SolutionInterface};
+use Alu\AdventOfCode\Year2015\Day14\Race\Manager;
+use Alu\AdventOfCode\Year2015\Day14\Race\Reindeer;
 
 class Part1 extends Solution implements SolutionInterface
 {
@@ -23,7 +25,7 @@ class Part1 extends Solution implements SolutionInterface
     {
         $input = $this->getInput();
         $reindeer = $this->parseReindeer($input);
-        $race = new RaceManager($reindeer);
+        $race = new Manager($reindeer);
 
         for ($second = 0; $second != $this->raceDuration; $second++) {
             $race->advance();

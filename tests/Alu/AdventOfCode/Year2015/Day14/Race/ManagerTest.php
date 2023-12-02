@@ -1,18 +1,17 @@
 <?php
 
-namespace Tests\Alu\AdventOfCode\Year2015\Day14;
+namespace Tests\Alu\AdventOfCode\Year2015\Day14\Race;
 
-use Alu\AdventOfCode\Year2015\Day14\Part1;
-use Alu\AdventOfCode\Year2015\Day14\RaceManager;
-use Alu\AdventOfCode\Year2015\Day14\Reindeer;
+use Alu\AdventOfCode\Year2015\Day14\Race\Manager;
+use Alu\AdventOfCode\Year2015\Day14\Race\Reindeer;
 use PHPUnit\Framework\TestCase;
 
-class RaceManagerTest extends TestCase
+class ManagerTest extends TestCase
 {
     public function testAdvance()
     {
         $reindeer = new Reindeer('Testdeer', 1, 2,10);
-        $race = new RaceManager([$reindeer]);
+        $race = new Manager([$reindeer]);
 
         $race->advance();
         $this->assertSame(1, $reindeer->getDistanceTravelled());
@@ -41,7 +40,7 @@ class RaceManagerTest extends TestCase
     {
         $loser = new Reindeer('Loser', 1, 2,10);
         $winner = new Reindeer('Winner', 1000, 2,10);
-        $race = new RaceManager([$loser, $winner]);
+        $race = new Manager([$loser, $winner]);
 
         $race->advance();
         $this->assertSame($winner, $race->winner());

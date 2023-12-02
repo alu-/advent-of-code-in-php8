@@ -1,15 +1,17 @@
 <?php
 
-namespace Alu\AdventOfCode\Year2015\Day14;
+namespace Alu\AdventOfCode\Year2015\Day14\Race;
 
-class RaceManager
+use Alu\AdventOfCode\Year2015\Day14\Race\Contracts\RaceInterface;
+
+class Manager implements RaceInterface
 {
     private int $duration = 0;
 
     /**
      * @param array<int, Reindeer> $participants
      */
-    public function __construct(public array $participants = []) {}
+    public function __construct(private readonly array $participants) {}
 
     public function advance(): void
     {
