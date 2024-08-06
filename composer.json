@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "php": ">=8.1",
+        "php": ">=8.3",
         "symfony/console": "~5.3"
     },
     "require-dev": {
@@ -39,6 +39,6 @@
     },
     "scripts": {
         "test": "vendor/bin/phpunit",
-        "phpcs": "vendor/bin/phpcs . --colors --cache --standard=./phpcs.xml -p"
+        "phpcs": "vendor/bin/phpcs . --colors --cache --standard=./phpcs.xml -p -n"
     }
 }

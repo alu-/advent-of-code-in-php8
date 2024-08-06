@@ -1,9 +1,13 @@
 <?php
+declare(strict_types=1);
 
 namespace Alu\AdventOfCode\Year2015\Day4;
 
 use Alu\AdventOfCode\Helpers\Solution;
 
+/**
+ * @see Part1
+ */
 class Part2 extends Solution
 {
     public function run(): int
