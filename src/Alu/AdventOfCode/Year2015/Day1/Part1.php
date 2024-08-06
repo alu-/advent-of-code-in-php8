@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Alu\AdventOfCode\Year2015\Day1;
 
-use Alu\AdventOfCode\Helpers\{Solution, SolutionInterface};
+use Alu\AdventOfCode\Helpers\Solution;
 
-class Part1 extends Solution implements SolutionInterface
+class Part1 extends Solution
 {
     public function run(): int
     {

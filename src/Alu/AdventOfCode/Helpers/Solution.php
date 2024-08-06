@@ -5,7 +5,7 @@ namespace Alu\AdventOfCode\Helpers;
 
 use ReflectionClass;
 
-abstract class Solution
+abstract class Solution implements SolutionInterface
 {
     private string $input;
 
