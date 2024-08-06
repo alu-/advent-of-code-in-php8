@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Alu\AdventOfCode\Year2015\Day7;
 
@@ -95,7 +96,7 @@ class Part1 extends Solution implements SolutionInterface
      * @param int|string|null $value
      * @return int|null
      */
-    protected function readMemoryOrUseValue(int|string|null $value): int|null
+    protected function readMemoryOrUseValue(int|string|null $value): int|string|null
     {
         if (is_numeric($value)) {
             return $value;
@@ -111,7 +112,7 @@ class Part1 extends Solution implements SolutionInterface
      * @param string $address
      * @param int $value
      */
-    protected function writeMemoryAtAddress(string $address, int $value): void
+    protected function writeMemoryAtAddress(string $address, int|string $value): void
     {
         $this->memory[$address] = pack('S', $value);
     }

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Alu\AdventOfCode\Helpers\Runner\Command;
 
@@ -30,7 +31,7 @@ class RunnerCommand extends Command
             );
 
             if (!empty($matches['year']) && !empty($matches['day'])) {
-                $this->runDay($output, $matches['day'], $matches['year']);
+                $this->runDay($output, (int) $matches['day'], (int) $matches['year']);
             }
         }
 
@@ -60,9 +61,9 @@ class RunnerCommand extends Command
 
             if ($year) {
                 if ($day) {
-                    return $this->runDay($output, $day, $year);
+                    return $this->runDay($output, (int) $day, (int) $year);
                 } else {
-                    return $this->runYear($output, $year);
+                    return $this->runYear($output, (int) $year);
                 }
             }
         }
@@ -76,7 +77,7 @@ class RunnerCommand extends Command
             $class = $this->formatClassNamespace($year, $day, $part);
             if (class_exists($class)) {
                 $solution = new $class;
-                $output->writeln(sprintf("Year: %d Day: %d Part: %d Answer: %d", $year, $day, $part, $solution->run()));
+                $output->writeln(sprintf("Year: %d Day: %d Part: %d Answer: %s", $year, $day, $part, $solution->run()));
             } else {
                 $output->writeln(sprintf("Part %d not found for year %d day %d, not running ..", $part, $year, $day));
             }

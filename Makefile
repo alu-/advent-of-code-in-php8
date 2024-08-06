@@ -3,16 +3,16 @@ CURRENT_UID := $(shell id -u)
 CURRENT_GID := $(shell id -g)
 YEAR ?= $(shell date +"%Y")
 DAY ?= $(shell date +"%d")
-.PHONY: run all bootstrap clean
+.PHONY: run all bootstrap clean tests
 
 run: vendor
-	docker-compose run --rm php application.php aoc:run $(YEAR) $(DAY)
+	docker-compose run -u $(CURRENT_UID) -T --rm php application.php aoc:run $(YEAR) $(DAY)
 
 all: vendor
-	docker-compose run --rm php application.php aoc:run --all
+	docker-compose run -u $(CURRENT_UID) -T --rm php application.php aoc:run --all
 
 bootstrap: vendor
-	docker-compose run --rm php application.php aoc:bootstrap
+	docker-compose run -u $(CURRENT_UID) -T --rm php application.php aoc:bootstrap --next
 
 vendor:
 	docker run --rm -it \
@@ -22,7 +22,7 @@ vendor:
 		composer:2.4.4 composer install -n
 
 tests: vendor
-	docker-compose run php ./vendor/bin/phpunit
+	docker-compose run -u $(CURRENT_UID) -T --rm php ./vendor/bin/phpunit
 
 clean:
 	rm -rf vendor
