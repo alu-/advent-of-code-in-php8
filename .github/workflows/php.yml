@@ -69,6 +69,14 @@ jobs:
           ini-values: ${{ env.PHP_INI_VALUES }}
           tools: none
 
+      - name: Install PHP with extensions
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          extensions: ${{ env.PHP_EXTENSIONS }}
+          ini-values: ${{ env.PHP_INI_VALUES }}
+          tools: none
+
       - name: Validate composer.json and composer.lock
         run: composer validate --strict
 
