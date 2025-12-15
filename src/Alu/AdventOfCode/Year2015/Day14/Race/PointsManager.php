@@ -19,7 +19,7 @@ class PointsManager extends Manager
         $this->points[$racer->getName()] = 0;
     }
 
-    protected function advance(): void
+    public function advance(): void
     {
         parent::advance();
 
