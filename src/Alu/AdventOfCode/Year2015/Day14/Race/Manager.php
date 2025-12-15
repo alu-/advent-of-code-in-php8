@@ -11,7 +11,7 @@ class Manager implements RaceInterface
     /**
      * @param array<int, Reindeer> $participants
      */
-    public function __construct(private readonly array $participants)
+    public function __construct(protected readonly array $participants)
     {
     }
 
