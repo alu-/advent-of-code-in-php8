@@ -5,18 +5,21 @@ namespace Alu\AdventOfCode\Helpers\Runner\Command;
 
 use Generator;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
 
+/**
+ * Command to run all solutions
+ */
 class RunnerCommand extends Command
 {
+    /**
+     * @var string
+     */
     protected static $defaultName = 'aoc:run';
 
     /**
-     * @param $matches
      * @param OutputInterface $output
      * @return int
      */
@@ -25,7 +28,7 @@ class RunnerCommand extends Command
         foreach ($this->getSolutions() as $solution) {
             /** @var string $solution */
             preg_match(
-                '/^.*Alu\/AdventOfCode\/Year(?P<year>\d*)\/Day(?P<day>\d*)\/Part\d*.php$/',
+                '/^.*Alu\/AdventOfCode\/Year(?P<year>\d*)\/Day(?P<day>\d*)\/input\.txt$/',
                 $solution,
                 $matches
             );
@@ -51,6 +54,11 @@ class RunnerCommand extends Command
             ->addOption('all', description: 'Run all solutions');
     }
 
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     * @return int
+     */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         if ($input->getOption('all')) {
@@ -71,6 +79,12 @@ class RunnerCommand extends Command
         return Command::FAILURE;
     }
 
+    /**
+     * @param OutputInterface $output
+     * @param int $day
+     * @param int $year
+     * @return int
+     */
     private function runDay(OutputInterface $output, int $day, int $year): int
     {
         for ($part = 1; $part <= 2; $part++) {
@@ -86,6 +100,11 @@ class RunnerCommand extends Command
         return Command::SUCCESS;
     }
 
+    /**
+     * @param OutputInterface $output
+     * @param int $year
+     * @return int
+     */
     private function runYear(OutputInterface $output, int $year): int
     {
         for ($day = 1; $day <= 25; $day++) {
@@ -95,6 +114,12 @@ class RunnerCommand extends Command
         return Command::SUCCESS;
     }
 
+    /**
+     * @param int $year
+     * @param int $day
+     * @param int $part
+     * @return string
+     */
     private function formatClassNamespace(int $year, int $day, int $part): string
     {
         return '\\Alu\\AdventOfCode\\Year' . $year . '\\Day' . $day . '\\Part' . $part;
@@ -108,7 +133,7 @@ class RunnerCommand extends Command
         $finder = (new Finder())
             ->files()
             ->in(realpath(__DIR__ . '/../../..') . '/Year*/Day*/')
-            ->name('*.php')
+            ->name('input.txt')
             ->sortByName(true);
 
         foreach ($finder as $path => $fileInfo) {

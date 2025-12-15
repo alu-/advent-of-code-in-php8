@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Tests\Alu\AdventOfCode\Year2015\Day5;
 
 use Alu\AdventOfCode\Year2015\Day5\Part1;
-use PHPUnit\Framework\TestCase;
+use Tests\Alu\AdventOfCode\TestCase;
 
 class Part1Test extends TestCase
 {
@@ -13,7 +13,8 @@ class Part1Test extends TestCase
      */
     public function testRun($input, $output)
     {
-        $solution = new Part1();
+        /** @var Part1 $solution */
+        $solution = $this->getMockForPart(Part1::class);
         $solution->setInput($input);
 
         $this->assertSame($output, $solution->run());
