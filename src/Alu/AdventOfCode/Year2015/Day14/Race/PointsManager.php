@@ -28,7 +28,7 @@ class PointsManager extends Manager
 
     private function awardPoints(): void
     {
-        $maxDistance = array_reduce($this->participants, function($carry, $x) {
+        $maxDistance = array_reduce($this->participants, function ($carry, $x) {
             return $x->getDistance() > $carry ? $x->getDistance() : $carry;
         }, -INF);
 

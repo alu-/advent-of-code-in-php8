@@ -12,11 +12,10 @@ trait Raceable
 
     public function __construct(
         private readonly string $name,
-        private readonly int    $speed,
-        private readonly int    $travelDuration,
-        private readonly int    $restDuration
-    )
-    {
+        private readonly int $speed,
+        private readonly int $travelDuration,
+        private readonly int $restDuration
+    ) {
         $this->stamina = $this->travelDuration;
     }
 
