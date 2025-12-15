@@ -43,7 +43,6 @@ class BootstrapCommand extends Command
     {
         $this
             ->setDescription('Downloads a puzzle and creates empty solution and test files.')
-            ->setHelp('This command allows you to run an individual puzzle or a whole advent.')
             ->addOption('next', null, InputOption::VALUE_NONE, 'Bootstrap the next puzzle');
     }
 
