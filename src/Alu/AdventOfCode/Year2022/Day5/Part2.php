@@ -8,7 +8,7 @@ class Part2 extends Part1
     {
         list($stackMap, $instructions) = array_map(
             fn($item) => explode("\n", $item),
-            explode("\n\n", $this->getInput(true))
+            explode("\n\n", $this->getInput())
         );
 
         $stacks = $this->createStacks($stackMap);
