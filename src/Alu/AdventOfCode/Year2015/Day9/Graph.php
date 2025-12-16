@@ -93,7 +93,14 @@ class Graph
         }
 
         $routes = [];
-        $dfs = function (Vertex $vertex, int|float $distance = 0, Route $discovered = new Route()) use (&$dfs, &$routes) {
+        $dfs = function (
+            Vertex $vertex,
+            int|float $distance = 0,
+            Route $discovered = new Route()
+        ) use (
+            &$dfs,
+            &$routes
+        ) {
             $discovered->addStop($vertex, $distance);
             $edgesNotVisited = array_filter(
                 $this->adjacentEdges($vertex),
@@ -129,7 +136,15 @@ class Graph
         }
 
         $routes = [];
-        $dfs = function (Vertex $vertex, int|float $distance = 0, Route $discovered = new Route()) use (&$dfs, &$routes, $start) {
+        $dfs = function (
+            Vertex $vertex,
+            int|float $distance = 0,
+            Route $discovered = new Route()
+        ) use (
+            &$dfs,
+            &$routes,
+            $start
+        ) {
             $discovered->addStop($vertex, $distance);
             $edgesNotVisited = array_filter(
                 $this->adjacentEdges($vertex),
