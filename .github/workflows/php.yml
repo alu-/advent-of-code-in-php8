@@ -77,3 +77,6 @@ jobs:
 
       - name: Run phpcs
         run: composer run-script phpcs
+
+      - name: Run PHPStan
+        run: vendor/bin/phpstan analyse --memory-limit=-1 src tests
