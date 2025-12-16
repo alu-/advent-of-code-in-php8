@@ -43,7 +43,10 @@ class BootstrapCommand extends Command
     {
         $this
             ->setDescription('Downloads a puzzle and creates empty solution and test files.')
-            ->addOption('next', null, InputOption::VALUE_NONE, 'Bootstrap the next puzzle');
+            ->addOption('next', null, InputOption::VALUE_NONE, 'Bootstrap the next puzzle')
+            ->addOption('year', null, InputOption::VALUE_REQUIRED, 'Year of next puzzle to bootstrap')
+            ->addOption('day', null, InputOption::VALUE_REQUIRED, 'Day of next puzzle to bootstrap')
+            ->addOption('part', null, InputOption::VALUE_REQUIRED, 'Part of the day of next puzzle to bootstrap');
     }
 
     /**
@@ -72,7 +75,15 @@ class BootstrapCommand extends Command
                 $output->write("There isn't another puzzle for you to solve.", true);
                 return Command::SUCCESS;
             }
+        } elseif ($input->getOption('year') || $input->getOption('day')) {
+            $puzzle = [
+                'year' => (int) ($input->getOption('year') ?? date('Y')),
+                'day' => (int) ($input->getOption('day') ?? date('j')),
+                'part' => (int) ($input->getOption('part') ?? 1)
+            ];
+        }
 
+        if (isset($puzzle)) {
             $output->write(vsprintf("Next puzzle is year %s, day %s, part %s ..", $puzzle), true);
 
             $this->createDirectories($puzzle['year'], $puzzle['day']);
