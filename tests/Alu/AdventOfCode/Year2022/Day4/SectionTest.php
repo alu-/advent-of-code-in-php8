@@ -3,7 +3,6 @@
 namespace Tests\Alu\AdventOfCode\Year2022\Day4;
 
 use Alu\AdventOfCode\Year2022\Day4\Section;
-use JetBrains\PhpStorm\Pure;
 use PHPUnit\Framework\TestCase;
 
 class SectionTest extends TestCase
@@ -37,7 +36,6 @@ class SectionTest extends TestCase
         $this->assertEquals($expected, $left->hasOverlappingSections($right));
     }
 
-    #[Pure]
     public function sectionDataProvider(): array
     {
         return [
@@ -69,7 +67,6 @@ class SectionTest extends TestCase
         ];
     }
 
-    #[Pure]
     public function overlappingSectionsDataProvider(): array
     {
         return [

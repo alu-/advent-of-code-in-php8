@@ -16,5 +16,7 @@ class Part1 extends Solution implements SolutionInterface
                 return $password;
             }
         }
+
+        throw new \RuntimeException("No valid password found.");
     }
 }
