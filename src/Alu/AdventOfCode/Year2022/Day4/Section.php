@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace Alu\AdventOfCode\Year2022\Day4;
 
-use JetBrains\PhpStorm\Pure;
-
 class Section
 {
     public function __construct(
@@ -29,13 +27,11 @@ class Section
         return $this->stop;
     }
 
-    #[Pure]
     public function containsSection(Section $otherSection): bool
     {
         return $otherSection->getStart() >= $this->getStart() && $otherSection->getStop() <= $this->getStop();
     }
 
-    #[Pure]
     public function getSections(): array
     {
         return range($this->getStart(), $this->getStop());

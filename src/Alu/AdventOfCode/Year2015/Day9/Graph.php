@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace Alu\AdventOfCode\Year2015\Day9;
 
-use JetBrains\PhpStorm\Pure;
-
 /**
  * Data class to hold information about a graph.
  * https://en.wikipedia.org/wiki/Graph_theory
@@ -75,7 +73,7 @@ class Graph
      * @param Vertex $vertex
      * @return array
      */
-    #[Pure] public function adjacentEdges(Vertex $vertex): array
+    public function adjacentEdges(Vertex $vertex): array
     {
         return $this->edges[$vertex->getName()];
     }

@@ -18,16 +18,8 @@ class Part1 extends Solution
         return $characters_length - $memory_length;
     }
 
-    /**
-     * Parse code with eval.
-     * @param string $code
-     * @return string
-     */
     private static function decode(string $code): string
     {
-        /** @var string $decoded */
-        eval('$decoded = ' . $code . ';');
-
-        return $decoded;
+        return stripcslashes(substr($code, 1, -1));
     }
 }
