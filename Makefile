@@ -3,7 +3,7 @@ CURRENT_UID := $(shell id -u)
 CURRENT_GID := $(shell id -g)
 YEAR ?= $(shell date +"%Y")
 DAY ?= $(shell date +"%d")
-.PHONY: run all lint tests bootstrap clean
+.PHONY: run all lint bootstrap tests shell clean
 
 run: vendor
 	docker-compose run -u $(CURRENT_UID) -T --rm php application.php aoc:run $(YEAR) $(DAY)
@@ -26,6 +26,9 @@ vendor:
 
 tests: vendor
 	docker-compose run -u $(CURRENT_UID) -T --rm php ./vendor/bin/phpunit
+
+shell:
+	docker-compose run -u $(CURRENT_UID) -it --rm --entrypoint /bin/sh php
 
 clean:
 	rm -rf vendor
