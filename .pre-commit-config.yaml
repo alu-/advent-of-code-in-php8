@@ -1,0 +1,16 @@
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.2.0
+    hooks:
+    -   id: trailing-whitespace
+        exclude: (^|/)input\.txt$
+    -   id: end-of-file-fixer
+        exclude: (^|/)input\.txt$
+    -   id: check-yaml
+-   repo: local
+    hooks:
+      -   id: phpcs
+          name: PHP_CodeSniffer
+          files: \.(php)$
+          language: docker_image
+          entry: --network none php:8.3-cli-alpine ./vendor/bin/phpcs
