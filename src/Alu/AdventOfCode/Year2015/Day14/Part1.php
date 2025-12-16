@@ -41,14 +41,21 @@ class Part1 extends Solution implements SolutionInterface
     protected function parseReindeer(string $input): array
     {
         preg_match_all(
-            '/(?P<name>\w+) can fly (?P<distance>\d+) km\/s for (?P<duration>\d+) seconds, but then must rest for (?P<restDuration>\d+) seconds\\./',
+            '/(?P<name>\w+) can fly (?P<distance>\d+) km\/s '
+            . 'for (?P<duration>\d+) seconds, '
+            . 'but then must rest for (?P<restDuration>\d+) seconds\./',
             $input,
             $reindeerData,
             PREG_SET_ORDER
         );
 
         return array_map(
-            fn($data): Reindeer => new Reindeer($data['name'], $data['distance'], $data['duration'], $data['restDuration']),
+            fn($data): Reindeer => new Reindeer(
+                $data['name'],
+                $data['distance'],
+                $data['duration'],
+                $data['restDuration']
+            ),
             $reindeerData
         );
     }
