@@ -20,7 +20,7 @@ class Part2Test extends TestCase
         $this->assertSame($output, $solution->run());
     }
 
-    public function inputProvider(): array
+    public static function inputProvider(): array
     {
         return [
             ['turn on 0,0 through 0,0', 1],

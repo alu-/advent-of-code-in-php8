@@ -36,7 +36,7 @@ class SectionTest extends TestCase
         $this->assertEquals($expected, $left->hasOverlappingSections($right));
     }
 
-    public function sectionDataProvider(): array
+    public static function sectionDataProvider(): array
     {
         return [
             [
@@ -67,7 +67,7 @@ class SectionTest extends TestCase
         ];
     }
 
-    public function overlappingSectionsDataProvider(): array
+    public static function overlappingSectionsDataProvider(): array
     {
         return [
             [

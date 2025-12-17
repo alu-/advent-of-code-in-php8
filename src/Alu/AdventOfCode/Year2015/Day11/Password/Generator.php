@@ -23,7 +23,7 @@ class Generator implements Iterator
     public function next(): void
     {
         $this->index++;
-        $this->password++;
+        $this->password = str_increment($this->password);
     }
 
     public function key(): int

@@ -1,8 +1,8 @@
-FROM php:8.3.0-cli-alpine3.18
+FROM php:8.5.0-cli-alpine
 
 LABEL maintainer="alu@byteberry.net"
 
-COPY --from=composer:2.4.4 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2.9.2 /usr/bin/composer /usr/bin/composer
 COPY composer.* /var/www/html/
 
 WORKDIR /var/www/html

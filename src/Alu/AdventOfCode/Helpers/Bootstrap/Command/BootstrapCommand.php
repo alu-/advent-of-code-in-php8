@@ -9,6 +9,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Cookie\CookieJar;
 use GuzzleHttp\Exception\GuzzleException;
 use League\HTMLToMarkdown\HtmlConverter;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -23,14 +24,14 @@ use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 use Twig\Loader\FilesystemLoader;
 
+#[AsCommand(name: 'aoc:bootstrap')]
 class BootstrapCommand extends Command
 {
-    protected static $defaultName = 'aoc:bootstrap';
     private Client $client;
 
-    public function __construct(string $name = null)
+    public function __construct()
     {
-        parent::__construct($name);
+        parent::__construct();
 
         $this->client = new Client(['cookies' => true]);
     }
@@ -58,7 +59,7 @@ class BootstrapCommand extends Command
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    public function __invoke(InputInterface $input, OutputInterface $output): int
     {
         $this->loadConfig();
         if (!$this->isConfigured()) {
@@ -107,8 +108,8 @@ class BootstrapCommand extends Command
      */
     protected function loadConfig(): void
     {
-        (new Dotenv())
-            ->usePutenv(true)
+        new Dotenv()
+            ->usePutenv()
             ->load(dirname(__DIR__, 6) . '/.env');
     }
 
