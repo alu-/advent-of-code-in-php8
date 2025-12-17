@@ -13,7 +13,7 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     env:
-      PHP_EXTENSIONS: none, dom, json, libxml, simplexml, mbstring, openssl, pdo_sqlite, phar, soap, tokenizer, xml, xmlwriter
+      PHP_EXTENSIONS: none, dom, json, libxml, simplexml, mbstring, openssl, pdo_sqlite, phar, soap, tokenizer, xml, xmlwriter, iconv
       PHP_INI_VALUES: memory_limit=-1, assert.exception=1, zend.assertions=1, error_reporting=-1, log_errors_max_len=0, display_errors=On
 
     strategy:
