@@ -19,7 +19,7 @@ class Part1Test extends TestCase
         $this->assertSame($output, $solution->run());
     }
 
-    public function inputProvider(): array
+    public static function inputProvider(): array
     {
         return [
             ['3113322113', 329356],
@@ -35,7 +35,7 @@ class Part1Test extends TestCase
         $this->assertSame($output, $solution->lookAndSay($input));
     }
 
-    public function lookAndSayInputProvider(): array
+    public static function lookAndSayInputProvider(): array
     {
         return [
             ['1', '11'],

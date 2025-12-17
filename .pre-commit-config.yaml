@@ -13,7 +13,7 @@ repos:
           name: PHP_CodeSniffer
           files: \.(php)$
           language: docker_image
-          entry: --network none php:8.3-cli-alpine ./vendor/bin/phpcs
+          entry: --network none php:8.5.0-cli-alpine ./vendor/bin/phpcs
 -   repo: local
     hooks:
       -   id: phpstan
@@ -21,4 +21,4 @@ repos:
           files: \.(php)$
           pass_filenames: false
           language: docker_image
-          entry: --network none php:8.3-cli-alpine vendor/bin/phpstan analyse --memory-limit=-1 src tests
+          entry: --network none php:8.5.0-cli-alpine vendor/bin/phpstan analyse --memory-limit=-1 src tests

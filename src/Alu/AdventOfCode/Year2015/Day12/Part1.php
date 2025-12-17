@@ -14,7 +14,7 @@ class Part1 extends Solution implements SolutionInterface
         $iterator = new IntegerFilterIterator(
             new RecursiveIteratorIterator(
                 new RecursiveArrayIterator(
-                    json_decode($this->getInput())
+                    json_decode($this->getInput(), true)
                 )
             )
         );

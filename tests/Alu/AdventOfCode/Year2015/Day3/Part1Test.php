@@ -20,7 +20,7 @@ class Part1Test extends TestCase
         $this->assertSame($output, $solution->run());
     }
 
-    public function inputProvider(): array
+    public static function inputProvider(): array
     {
         return [
             ['>', 2],

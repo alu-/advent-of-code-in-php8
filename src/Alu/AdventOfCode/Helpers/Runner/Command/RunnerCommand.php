@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Alu\AdventOfCode\Helpers\Runner\Command;
 
 use Generator;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -12,13 +13,9 @@ use Symfony\Component\Finder\Finder;
 /**
  * Command to run all solutions
  */
+#[AsCommand(name: 'aoc:run')]
 class RunnerCommand extends Command
 {
-    /**
-     * @var string
-     */
-    protected static $defaultName = 'aoc:run';
-
     /**
      * @param OutputInterface $output
      * @return int
@@ -59,7 +56,7 @@ class RunnerCommand extends Command
      * @param OutputInterface $output
      * @return int
      */
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    public function __invoke(InputInterface $input, OutputInterface $output): int
     {
         if ($input->getOption('all')) {
             return $this->runAll($output);
