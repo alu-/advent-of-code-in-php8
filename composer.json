@@ -24,12 +24,16 @@
         "symfony/filesystem": "~8.0",
         "league/html-to-markdown": "5.0.2",
         "twig/twig": "^3.0",
-        "phpstan/phpstan": "^2.1"
+        "phpstan/phpstan": "^2.1",
+        "symfony/var-dumper": "*"
     },
     "autoload": {
         "psr-4": {
             "Alu\\": "src/Alu"
-        }
+        },
+        "files": [
+            "src/Alu/AdventOfCode/Helpers/ArrayFunctions.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
