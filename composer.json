@@ -43,7 +43,7 @@
         }
     },
     "scripts": {
-        "test": "vendor/bin/phpunit",
+        "test": "vendor/bin/paratest",
         "phpcs": "vendor/bin/phpcs . --colors --cache --standard=./phpcs.xml -p -n"
     }
 }
