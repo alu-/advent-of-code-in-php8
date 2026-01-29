@@ -3,6 +3,7 @@
 namespace Tests\Alu\AdventOfCode\Year2022\Day4;
 
 use Alu\AdventOfCode\Year2022\Day4\Section;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 class SectionTest extends TestCase
@@ -13,24 +14,24 @@ class SectionTest extends TestCase
     }
 
     /**
-     * @dataProvider sectionDataProvider
      * @param Section $left
      * @param Section $right
      * @param bool $expected
      * @return void
      */
+    #[DataProvider('sectionDataProvider')]
     public function testContainsSection(Section $left, Section $right, bool $expected): void
     {
         $this->assertEquals($expected, $left->containsSection($right));
     }
 
     /**
-     * @dataProvider overlappingSectionsDataProvider
      * @param Section $left
      * @param Section $right
      * @param bool $expected
      * @return void
      */
+    #[DataProvider('overlappingSectionsDataProvider')]
     public function testHasOverlappingSections(Section $left, Section $right, bool $expected): void
     {
         $this->assertEquals($expected, $left->hasOverlappingSections($right));

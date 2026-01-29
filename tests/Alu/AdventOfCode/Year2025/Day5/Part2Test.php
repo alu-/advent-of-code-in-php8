@@ -4,13 +4,12 @@ declare(strict_types = 1);
 namespace Tests\Alu\AdventOfCode\Year2025\Day5;
 
 use Alu\AdventOfCode\Year2025\Day5\Part2;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\Alu\AdventOfCode\TestCase;
 
 class Part2Test extends TestCase
 {
-    /**
-     * @dataProvider inputProvider
-     */
+    #[DataProvider('inputProvider')]
     public function testRun($input, $output)
     {
         /** @var Part2 $solution */
