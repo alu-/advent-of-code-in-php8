@@ -4,13 +4,12 @@ declare(strict_types=1);
 namespace Tests\Alu\AdventOfCode\Year2015\Day10;
 
 use Alu\AdventOfCode\Year2015\Day10\Part1;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 class Part1Test extends TestCase
 {
-    /**
-     * @dataProvider inputProvider
-     */
+    #[DataProvider('inputProvider')]
     public function testRun($input, $output)
     {
         $solution = new Part1();
@@ -26,9 +25,7 @@ class Part1Test extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider lookAndSayInputProvider
-     */
+    #[DataProvider('lookAndSayInputProvider')]
     public function testLookAndSay($input, $output)
     {
         $solution = new Part1();

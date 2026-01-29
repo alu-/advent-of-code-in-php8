@@ -13,9 +13,14 @@ class TestCase extends PhpUnitTestCase
      */
     protected function getMockForPart(string $className): MockObject
     {
-        return $this
+        $mock = $this
             ->getMockBuilder($className)
             ->onlyMethods(['readInputFromFile'])
             ->getMock();
+        $mock
+            ->expects($this->never())
+            ->method('readInputFromFile');
+
+        return $mock;
     }
 }

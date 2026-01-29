@@ -3,16 +3,13 @@ declare(strict_types = 1);
 
 namespace Tests\Alu\AdventOfCode\Year2016\Day1;
 
-use Alu\AdventOfCode\Year2016\Day1\CardinalDirection;
 use Alu\AdventOfCode\Year2016\Day1\Part1;
-use Alu\AdventOfCode\Year2016\Day1\Rotation;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\Alu\AdventOfCode\TestCase;
 
 class Part1Test extends TestCase
 {
-    /**
-     * @dataProvider inputProvider
-     */
+    #[DataProvider('inputProvider')]
     public function testRun($input, $output)
     {
         /** @var Part1 $solution */
