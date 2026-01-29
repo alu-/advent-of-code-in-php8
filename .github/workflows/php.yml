@@ -8,7 +8,7 @@ on:
 
 jobs:
   phpunit:
-    name: phpunit
+    name: phpunit (paratest)
 
     runs-on: ${{ matrix.os }}
 
