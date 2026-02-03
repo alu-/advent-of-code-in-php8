@@ -6,16 +6,16 @@ DAY ?= $(shell date +"%d")
 .PHONY: run all lint bootstrap tests shell clean
 
 run: vendor
-	docker-compose run -u $(CURRENT_UID):$(CURRENT_GID) -T --rm php application.php aoc:run $(YEAR) $(DAY)
+	docker compose run -u $(CURRENT_UID):$(CURRENT_GID) -T --rm php application.php aoc:run $(YEAR) $(DAY)
 
 all: vendor
-	docker-compose run -u $(CURRENT_UID):$(CURRENT_GID) -T --rm php application.php aoc:run --all
+	docker compose run -u $(CURRENT_UID):$(CURRENT_GID) -T --rm php application.php aoc:run --all
 
 lint: vendor
-	docker-compose run --rm php ./vendor/bin/phpcs .
+	docker compose run --rm php ./vendor/bin/phpcs .
 
 bootstrap: vendor
-	docker-compose run -u $(CURRENT_UID) -T --rm php application.php aoc:bootstrap --next
+	docker compose run -u $(CURRENT_UID) -T --rm php application.php aoc:bootstrap --next
 
 vendor:
 	docker run --rm -it \
@@ -25,10 +25,10 @@ vendor:
 		composer:2.9.2 composer install -n
 
 tests: vendor
-	docker-compose run -u $(CURRENT_UID):$(CURRENT_GID) -it --rm php ./vendor/bin/phpunit
+	docker compose run -u $(CURRENT_UID):$(CURRENT_GID) -it --rm php ./vendor/bin/phpunit
 
 shell:
-	docker-compose run -u $(CURRENT_UID):$(CURRENT_GID) -it --rm --entrypoint /bin/sh php
+	docker compose run -u $(CURRENT_UID):$(CURRENT_GID) -it --rm --entrypoint /bin/sh php
 
 clean:
 	rm -rf vendor
